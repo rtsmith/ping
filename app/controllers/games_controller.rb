@@ -14,6 +14,13 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create(params[:game])
+    Game.create(game_params)
+    render nothing: true
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:player1, :player2)
   end
 end
