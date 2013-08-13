@@ -21,3 +21,14 @@ module Ping
     # config.i18n.default_locale = :de
   end
 end
+
+use Rack::Cors do
+  allow do
+    origins 'localhost:9000', 'localhost:3000'
+
+    resource '*',
+      :methods => [:get, :post, :put, :delete, :options],
+      :headers => 'x-domain-token',
+      :max_age => 600
+  end
+end

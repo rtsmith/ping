@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
   def index
-    headers['Access-Control-Allow-Origin'] = '*'
     @games = Game.all
     respond_to do |format|
       format.json { render json: @games }
@@ -12,5 +11,9 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.json { render json: @game }
     end
+  end
+
+  def create
+    @game = Game.create(params[:game])
   end
 end
