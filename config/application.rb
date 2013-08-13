@@ -9,6 +9,17 @@ Bundler.require(:default, Rails.env)
 module Ping
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
+    config.middleware.use Rack::Cors do
+      allow do
+        origins 'localhost:9000', 'localhost:3000'
+    
+        resource '*',
+          :methods => [:get, :post, :put, :delete, :options],
+          :headers => :any,
+          :max_age => 600
+      end
+    end
+
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
@@ -22,13 +33,3 @@ module Ping
   end
 end
 
-use Rack::Cors do
-  allow do
-    origins 'localhost:9000', 'localhost:3000'
-
-    resource '*',
-      :methods => [:get, :post, :put, :delete, :options],
-      :headers => 'x-domain-token',
-      :max_age => 600
-  end
-end
