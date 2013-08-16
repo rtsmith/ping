@@ -18,6 +18,11 @@ class GamesController < ApplicationController
     render nothing: true
   end
 
+  def destroy
+    Game.destroy(params[:id])
+    render nothing: true
+  end
+
   private
 
   def game_params
