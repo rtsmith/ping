@@ -11,7 +11,7 @@ module Ping
     # Settings in config/environments/* take precedence over those specified here.
     config.middleware.use Rack::Cors do
       allow do
-        origins 'localhost:9000', 'localhost:3000', 'http://pong.imulus-ci.local/'
+        origins 'localhost:9000', 'localhost:3000', 'pong.imulus-ci.local'
     
         resource '*',
           :methods => [:get, :post, :put, :delete, :options],
