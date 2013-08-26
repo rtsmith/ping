@@ -6,16 +6,16 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
-    @game = Game.find(params[:id])
+  def show(game)
+    logger.info game.id
     respond_to do |format|
-      format.json { render json: @game }
+      format.json { render json: game }
     end
   end
 
   def create
-    Game.create(game_params)
-    render nothing: true
+    game = Game.create(game_params)
+    show(game)
   end
 
   def destroy
